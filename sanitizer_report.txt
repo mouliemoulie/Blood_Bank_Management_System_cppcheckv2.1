@@ -1,0 +1,23 @@
+
+============================================================
+BLOOD BANK MANAGEMENT SYSTEM - VERSION 2
+============================================================
+
+============================================================
+FIRST-RUN ADMINISTRATOR SETUP
+============================================================
+Create the bootstrap administrator. This screen appears only when no administrator exists.
+[-1 = previous field | 0 = current menu | -99 = main menu]
+Administrator username: Administrator password: Confirm password: Create initial administrator: OK
+Recovery code: BMS-1001-adminuser
+Store this code securely.
+
+============================================================
+MAIN MENU
+============================================================
+1. Register
+2. Login
+3. Forgot password
+4. Exit
+Enter choice: 
+Thank you for using the Blood Bank Management System.
