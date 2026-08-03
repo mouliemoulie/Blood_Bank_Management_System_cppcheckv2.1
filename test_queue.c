@@ -1,0 +1,4 @@
+#include "test_common.h"
+#include "queue_management.h"
+static void test_queue_fifo(void){BmsQueue_t q;int a=10,b=20,o=0;ASSERT_STATUS(BMS_STATUS_OK,QueueInitialize(&q,2U,sizeof(int)));CU_ASSERT_TRUE(QueueIsEmpty(&q));ASSERT_STATUS(BMS_STATUS_OK,QueueEnqueue(&q,&a));ASSERT_STATUS(BMS_STATUS_OK,QueueEnqueue(&q,&b));CU_ASSERT_TRUE(QueueIsFull(&q));ASSERT_STATUS(BMS_STATUS_QUEUE_FULL,QueueEnqueue(&q,&a));ASSERT_STATUS(BMS_STATUS_OK,QueuePeek(&q,&o));CU_ASSERT_EQUAL(o,10);ASSERT_STATUS(BMS_STATUS_OK,QueueDequeue(&q,&o));CU_ASSERT_EQUAL(o,10);ASSERT_STATUS(BMS_STATUS_OK,QueueDequeue(&q,&o));CU_ASSERT_EQUAL(o,20);ASSERT_STATUS(BMS_STATUS_QUEUE_EMPTY,QueueDequeue(&q,&o));QueueDeinitialize(&q);}
+void RegisterQueueTests(void){CU_pSuite s=CU_add_suite("Queue",NULL,NULL);CU_add_test(s,"FIFO and boundaries",test_queue_fifo);}
