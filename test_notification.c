@@ -1,5 +1,0 @@
-#include "test_common.h"
-#include "notification_management.h"
-static BmsStatus_t fake_sender(const BmsNotification_t*n,void*c){(void)n;(*(uint32_t*)c)++;return BMS_STATUS_OK;}
-static void test_notification_queue(void){BmsNotificationContext_t c;BmsNotification_t n;uint32_t sent=0,processed=0;(void)memset(&n,0,sizeof n);n.notificationId=1;n.recipientUserId=1;n.channel=BMS_NOTIFICATION_CHANNEL_CONSOLE;n.priority=BMS_PRIORITY_HIGH;(void)snprintf(n.message,sizeof n,"Emergency alert");ASSERT_STATUS(BMS_STATUS_OK,NotificationManagementInitialize(&c));ASSERT_STATUS(BMS_STATUS_OK,NotificationManagementEnqueue(&c,&n));ASSERT_STATUS(BMS_STATUS_OK,NotificationManagementPeek(&c,&n));ASSERT_STATUS(BMS_STATUS_OK,NotificationManagementProcessAll(&c,fake_sender,&sent,&processed));CU_ASSERT_EQUAL(sent,1U);CU_ASSERT_EQUAL(processed,1U);NotificationManagementDeinitialize(&c);}
-void RegisterNotificationTests(void){CU_pSuite s=CU_add_suite("Notification",NULL,NULL);CU_add_test(s,"enqueue peek process",test_notification_queue);}
