@@ -1,4 +1,20 @@
-#include <CUnit/CUnit.h>
-#include <CUnit/Basic.h>
-void RegisterAuthenticationTests(void);void RegisterValidationTests(void);void RegisterDonorTests(void);void RegisterHospitalTests(void);void RegisterInventoryTests(void);void RegisterDonationTests(void);void RegisterRequestTests(void);void RegisterNotificationTests(void);void RegisterEmergencyAlertTests(void);void RegisterDonationCampTests(void);void RegisterLinkedListTests(void);void RegisterQueueTests(void);void RegisterHashTableTests(void);void RegisterGraphTests(void);void RegisterUtilityTests(void);
-int main(void){unsigned int failures;if(CU_initialize_registry()!=CUE_SUCCESS)return (int)CU_get_error();RegisterAuthenticationTests();RegisterValidationTests();RegisterDonorTests();RegisterHospitalTests();RegisterInventoryTests();RegisterDonationTests();RegisterRequestTests();RegisterNotificationTests();RegisterEmergencyAlertTests();RegisterDonationCampTests();RegisterLinkedListTests();RegisterQueueTests();RegisterHashTableTests();RegisterGraphTests();RegisterUtilityTests();CU_basic_set_mode(CU_BRM_VERBOSE);CU_basic_run_tests();failures=CU_get_number_of_failures();CU_cleanup_registry();return failures==0U?0:1;}
+#include "test_common.h"
+void RegisterValidationTests(void); void RegisterAuthenticationTests(void);
+void RegisterDonorTests(void); void RegisterInventoryTests(void);
+void RegisterRequestTests(void); void RegisterHospitalTests(void);
+void RegisterDonationTests(void); void RegisterNotificationTests(void);
+void RegisterEmergencyAlertTests(void); void RegisterLinkedListTests(void);
+void RegisterQueueTests(void); void RegisterHashTableTests(void);
+void RegisterGraphTests(void); void RegisterUtilityTests(void);
+void RegisterFileManagementTests(void); void RegisterReportTests(void);
+void RegisterDonationCampTests(void);
+int main(void){
+ if(CU_initialize_registry()!=CUE_SUCCESS) return (int)CU_get_error();
+ RegisterValidationTests(); RegisterAuthenticationTests(); RegisterDonorTests();
+ RegisterInventoryTests(); RegisterRequestTests(); RegisterHospitalTests();
+ RegisterDonationTests(); RegisterNotificationTests(); RegisterEmergencyAlertTests();
+ RegisterLinkedListTests(); RegisterQueueTests(); RegisterHashTableTests();
+ RegisterGraphTests(); RegisterUtilityTests(); RegisterFileManagementTests(); RegisterReportTests(); RegisterDonationCampTests();
+ CU_basic_set_mode(CU_BRM_VERBOSE); CU_basic_run_tests();
+ unsigned int failed=CU_get_number_of_failures(); CU_cleanup_registry(); return failed==0U?0:1;
+}
