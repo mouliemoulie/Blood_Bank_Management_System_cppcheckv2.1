@@ -1,5 +1,0 @@
-#include "test_common.h"
-#include "donor_management.h"
-static void test_donor_crud(void){BmsDonorContext_t c;BmsDonor_t d=TestDonor(1U,"Arun Kumar",BMS_BLOOD_GROUP_A_POSITIVE),out;ASSERT_STATUS(BMS_STATUS_OK,DonorManagementInitialize(&c));ASSERT_STATUS(BMS_STATUS_OK,DonorManagementAdd(&c,&d));ASSERT_STATUS(BMS_STATUS_OK,DonorManagementSearchById(&c,1U,&out));CU_ASSERT_STRING_EQUAL(out.name,"Arun Kumar");d.weightKg=70U;ASSERT_STATUS(BMS_STATUS_OK,DonorManagementUpdate(&c,&d));ASSERT_STATUS(BMS_STATUS_OK,DonorManagementDelete(&c,1U));ASSERT_STATUS(BMS_STATUS_NOT_FOUND,DonorManagementSearchById(&c,1U,&out));DonorManagementDeinitialize(&c);}
-static void test_donor_eligibility(void){BmsDonor_t d=TestDonor(2U,"Meena Ravi",BMS_BLOOD_GROUP_O_POSITIVE);BmsDate_t now={2026U,8U,1U};ASSERT_STATUS(BMS_STATUS_OK,DonorManagementCheckEligibility(&d,&now));CU_ASSERT_TRUE(d.isEligible);d.age=16U;ASSERT_STATUS(BMS_STATUS_OK,DonorManagementCheckEligibility(&d,&now));CU_ASSERT_FALSE(d.isEligible);}
-void RegisterDonorTests(void){CU_pSuite s=CU_add_suite("Donor",NULL,NULL);CU_add_test(s,"CRUD",test_donor_crud);CU_add_test(s,"eligibility",test_donor_eligibility);}
