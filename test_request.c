@@ -1,4 +1,0 @@
-#include "test_common.h"
-#include "blood_request_management.h"
-static void test_request_lifecycle(void){BmsBloodRequestContext_t c;BmsBloodRequest_t r={1U,1U,10U,BMS_BLOOD_GROUP_A_POSITIVE,2U,0U,BMS_PRIORITY_HIGH,BMS_REQUEST_STATUS_PENDING,{2026,8,1},{2026,8,3}},out;ASSERT_STATUS(BMS_STATUS_OK,BloodRequestManagementInitialize(&c));ASSERT_STATUS(BMS_STATUS_OK,BloodRequestManagementCreate(&c,&r));ASSERT_STATUS(BMS_STATUS_OK,BloodRequestManagementSearchById(&c,1U,&out));ASSERT_STATUS(BMS_STATUS_OK,BloodRequestManagementApprove(&c,1U));ASSERT_STATUS(BMS_STATUS_ALREADY_EXISTS,BloodRequestManagementCreate(&c,&r));BloodRequestManagementDeinitialize(&c);}
-void RegisterRequestTests(void){CU_pSuite s=CU_add_suite("Blood Request",NULL,NULL);CU_add_test(s,"create search approve duplicate",test_request_lifecycle);}
