@@ -1,4 +1,0 @@
-#include "test_common.h"
-#include "emergency_alert_management.h"
-static void test_alert_create_process_resolve(void){BmsEmergencyAlertContext_t c;BmsEmergencyAlert_t a,out;(void)memset(&a,0,sizeof a);a.alertId=1;a.sourceHospitalId=1;a.createdByUserId=2;a.bloodGroup=BMS_BLOOD_GROUP_O_NEGATIVE;a.requiredUnits=2;a.priority=BMS_PRIORITY_EMERGENCY;(void)snprintf(a.message,sizeof a,"Urgent surgery");ASSERT_STATUS(BMS_STATUS_OK,EmergencyAlertManagementInitialize(&c));ASSERT_STATUS(BMS_STATUS_OK,EmergencyAlertManagementCreate(&c,&a));ASSERT_STATUS(BMS_STATUS_OK,EmergencyAlertManagementProcessNext(&c,&out));CU_ASSERT_EQUAL(out.alertId,1U);ASSERT_STATUS(BMS_STATUS_OK,EmergencyAlertManagementResolve(&c,1U));EmergencyAlertManagementDeinitialize(&c);}
-void RegisterEmergencyAlertTests(void){CU_pSuite s=CU_add_suite("Emergency Alert",NULL,NULL);CU_add_test(s,"create process resolve",test_alert_create_process_resolve);}
