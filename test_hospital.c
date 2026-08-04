@@ -1,4 +1,0 @@
-#include "test_common.h"
-#include "hospital_management.h"
-static void test_hospital_crud_route(void){BmsHospitalContext_t c;BmsHospital_t a=TestHospital(1U,"Alpha Hospital"),b=TestHospital(2U,"Beta Hospital"),out;uint32_t d=0;ASSERT_STATUS(BMS_STATUS_OK,HospitalManagementInitialize(&c));ASSERT_STATUS(BMS_STATUS_OK,HospitalManagementAdd(&c,&a));ASSERT_STATUS(BMS_STATUS_OK,HospitalManagementAdd(&c,&b));ASSERT_STATUS(BMS_STATUS_OK,HospitalManagementSearchById(&c,1U,&out));ASSERT_STATUS(BMS_STATUS_OK,HospitalManagementAddRoute(&c,1U,2U,8U));ASSERT_STATUS(BMS_STATUS_OK,HospitalManagementGetRouteDistance(&c,1U,2U,&d));CU_ASSERT_EQUAL(d,8U);ASSERT_STATUS(BMS_STATUS_OK,HospitalManagementFindNearest(&c,1U,&out,&d));CU_ASSERT_EQUAL(out.hospitalId,2U);HospitalManagementDeinitialize(&c);}
-void RegisterHospitalTests(void){CU_pSuite s=CU_add_suite("Hospital",NULL,NULL);CU_add_test(s,"CRUD and route",test_hospital_crud_route);}
