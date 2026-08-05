@@ -172,7 +172,7 @@ static BmsStatus_t NormalizeBloodGroupText(
 
     return status;
 }
-
+//text->enum
 BmsStatus_t ParseBloodGroup(const char *text, BmsBloodGroup_t *bloodGroup)
 {
     BmsStatus_t status = BMS_STATUS_INVALID_ARGUMENT;
@@ -257,7 +257,7 @@ BmsStatus_t ParseBloodGroup(const char *text, BmsBloodGroup_t *bloodGroup)
 
     return status;
 }
-
+//enum->text
 const char *BloodGroupToString(BmsBloodGroup_t bloodGroup)
 {
     const char *text;
