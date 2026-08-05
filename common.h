@@ -4,7 +4,7 @@
  * @version 2.0.0
  * @brief Shared types, constants, and model definitions for BMS Version 2.
  */
-
+//header guard
 #ifndef BMS_COMMON_H
 #define BMS_COMMON_H
 
